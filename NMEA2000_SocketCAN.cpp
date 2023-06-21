@@ -67,6 +67,7 @@ bool tNMEA2000_SocketCAN::CANOpen() {
     struct ifreq ifr;
     struct sockaddr_can addr;
     int flags;
+    std::cout << "opening socket" << std::endl;
 
     //----  Open a socket to the CAN port
     skt = socket(PF_CAN, SOCK_RAW, CAN_RAW);
@@ -225,6 +226,32 @@ uint32_t millis(void) {
     return ((uint32_t) ((ticker.tv_sec * 1000) + (ticker.tv_nsec / 1000000)));
 
 };
+
+
+/***********************************************************************/
+int tSocketStream::peek() {
+  if ( port!=-1 ) {
+    return -1;
+  } else {
+    // Serial stream bridge -- Returns first byte if incoming data, or -1 on no available data.
+    struct timeval tv = { 0L, 0L };
+    fd_set fds;
+
+    FD_ZERO(&fds);
+    FD_SET(0, &fds);
+    if (select(1, &fds, NULL, NULL, &tv) < 0)                                   // Check fd=0 (stdin) to see if anything is there (timeout=0)
+        return -1;                                                              // Nothing is waiting for us.
+
+   int c;
+   c = (getc(stdin));                                                        // Something is there, go get one char of it.
+   ungetc(c, stdin);                                                         // Put it back
+
+   return c;
+
+  }
+}
+
+
 
 
 

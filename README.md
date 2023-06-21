@@ -19,6 +19,7 @@ Here is a very simple example on RPi:
 
 
 ```
+
 /* 
  * File:   main.cpp
  * Author: al
@@ -29,7 +30,7 @@ Here is a very simple example on RPi:
  *
  * Created on February 12, 2017, 2:37 PM
  */
-
+ 
 #include <cstdlib>
 #include <stdio.h>
 #include <iostream>
@@ -43,6 +44,7 @@ int main(void)
 
     setvbuf (stdout, NULL, _IONBF, 0);                                          // No buffering on stdout, just send chars as they come.
  
+    tSocketStream serStream; 
     NMEA2000.SetForwardStream(&serStream);                                      // Connect bridge function for streaming output.
     NMEA2000.SetForwardType(tNMEA2000::fwdt_Text);                              // Show in clear text (for now)
        
