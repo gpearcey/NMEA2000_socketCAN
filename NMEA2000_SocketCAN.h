@@ -69,6 +69,7 @@ public:
     tSocketStream(const char *_port=0);
     virtual ~tSocketStream();
     int read();
+    int peek() override; 
     size_t write(const uint8_t* data, size_t size);
 };
 
