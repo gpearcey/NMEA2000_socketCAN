@@ -5,3 +5,4 @@ add_library(
 )
 
 target_link_libraries(NMEA2000_socketCAN PUBLIC nmea2000)
+target_include_directories(NMEA2000_socketCAN PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
