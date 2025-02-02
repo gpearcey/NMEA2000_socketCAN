@@ -1,5 +1,3 @@
-find_package(ament_cmake REQUIRED)
-
 add_library(
     nmea2000_socketCAN
     NMEA2000_SocketCAN.cpp
